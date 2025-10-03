@@ -552,3 +552,129 @@ body {
         font-size: 0.7rem;
     }
 }
+
+/* Controles móviles */
+.mobile-controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Palanca de movimiento */
+.movement-joystick {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    pointer-events: auto;
+}
+
+.joystick-base {
+    width: 120px;
+    height: 120px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.joystick-knob {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.1s ease;
+    cursor: pointer;
+}
+
+/* Palanca de disparo */
+.shoot-joystick {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    pointer-events: auto;
+}
+
+.shoot-joystick .joystick-base {
+    border-color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.shoot-joystick .joystick-knob {
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+/* Botón de dash */
+.dash-button {
+    position: absolute;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 80px;
+    height: 80px;
+    background-color: rgba(0, 255, 0, 0.8);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000;
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.dash-button:active {
+    background-color: rgba(0, 255, 0, 1);
+    transform: translateX(50%) scale(0.95);
+}
+
+/* Ocultar controles en desktop */
+@media (min-width: 769px) {
+    .mobile-controls {
+        display: none;
+    }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+    .joystick-base {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .joystick-knob {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .dash-button {
+        width: 70px;
+        height: 70px;
+        font-size: 0.7rem;
+    }
+    
+    .movement-joystick {
+        bottom: 15px;
+        left: 15px;
+    }
+    
+    .shoot-joystick {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .dash-button {
+        bottom: 15px;
+    }
+}

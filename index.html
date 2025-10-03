@@ -266,6 +266,28 @@
             </div>
             <canvas id="game-canvas" width="800" height="600"></canvas>
             <button id="pause-btn" class="pause-btn">PAUSA</button>
+            
+            <!-- Controles móviles -->
+            <div class="mobile-controls">
+                <!-- Palanca de movimiento -->
+                <div class="movement-joystick">
+                    <div class="joystick-base" id="movement-base">
+                        <div class="joystick-knob" id="movement-knob"></div>
+                    </div>
+                </div>
+                
+                <!-- Palanca de disparo -->
+                <div class="shoot-joystick">
+                    <div class="joystick-base" id="shoot-base">
+                        <div class="joystick-knob" id="shoot-knob"></div>
+                    </div>
+                </div>
+                
+                <!-- Botón de dash -->
+                <div class="dash-button" id="dash-btn">
+                    <span>DASH</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -296,6 +318,7 @@
 
     <script src="auth-simple.js"></script>
     <script src="game-simple.js"></script>
+    <script src="mobile-controls.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
