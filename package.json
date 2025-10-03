@@ -1,6 +1,6 @@
 {
   "name": "strike-v5",
-  "version": "5.0.0",
+  "version": "v5",
   "description": "STRIKE v5 - Juego de disparos minimalista con sistema de usuarios",
   "main": "server.js",
   "scripts": {
