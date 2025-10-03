@@ -71,21 +71,42 @@ class Game {
     }
 
     initializeCanvas() {
-        const maxWidth = Math.min(window.innerWidth - 40, this.config.canvasWidth);
-        const maxHeight = Math.min(window.innerHeight - 150, this.config.canvasHeight);
+        // Detectar si es móvil
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                        window.innerWidth <= 768;
         
-        const aspectRatio = this.config.canvasWidth / this.config.canvasHeight;
-        
-        if (maxWidth / maxHeight > aspectRatio) {
-            this.canvas.width = maxHeight * aspectRatio;
-            this.canvas.height = maxHeight;
+        if (isMobile) {
+            // En móviles, usar toda la pantalla
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+            this.canvas.style.width = '100vw';
+            this.canvas.style.height = '100vh';
+            
+            // Actualizar configuración para móviles
+            this.config.canvasWidth = window.innerWidth;
+            this.config.canvasHeight = window.innerHeight;
         } else {
-            this.canvas.width = maxWidth;
-            this.canvas.height = maxWidth / aspectRatio;
+            // En desktop, mantener el tamaño original
+            const maxWidth = Math.min(window.innerWidth - 40, this.config.canvasWidth);
+            const maxHeight = Math.min(window.innerHeight - 150, this.config.canvasHeight);
+            
+            const aspectRatio = this.config.canvasWidth / this.config.canvasHeight;
+            
+            if (maxWidth / maxHeight > aspectRatio) {
+                this.canvas.width = maxHeight * aspectRatio;
+                this.canvas.height = maxHeight;
+            } else {
+                this.canvas.width = maxWidth;
+                this.canvas.height = maxWidth / aspectRatio;
+            }
+            
+            this.canvas.style.width = this.canvas.width + 'px';
+            this.canvas.style.height = this.canvas.height + 'px';
         }
         
-        this.canvas.style.width = this.canvas.width + 'px';
-        this.canvas.style.height = this.canvas.height + 'px';
+        // Actualizar el tamaño del canvas en la configuración
+        this.config.canvasWidth = this.canvas.width;
+        this.config.canvasHeight = this.canvas.height;
     }
 
     bindEvents() {
@@ -137,6 +158,11 @@ class Game {
             this.stop();
             this.showMenu();
         });
+        
+        // Redimensionamiento de ventana
+        window.addEventListener('resize', () => {
+            this.handleResize();
+        });
     }
 
     ensureLevelInfoPanel() {
@@ -151,6 +177,16 @@ class Game {
                 </div>
             `;
             document.body.appendChild(levelInfoPanel);
+        }
+    }
+    
+    handleResize() {
+        // Re-inicializar el canvas cuando cambia el tamaño de la ventana
+        this.initializeCanvas();
+        
+        // Actualizar controles móviles si existen
+        if (typeof mobileControls !== 'undefined' && mobileControls) {
+            mobileControls.updatePositions();
         }
     }
 
