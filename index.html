@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRIKE v5</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla de Login/Registro -->
+    <div id="auth-screen" class="screen">
+        <div class="auth-container">
+            <h1>STRIKE v5</h1>
+            
+            <div id="login-form" class="auth-form">
+                <h2>INICIAR SESIÓN</h2>
+                <input type="text" id="login-username" placeholder="Usuario" maxlength="20">
+                <input type="password" id="login-password" placeholder="Contraseña">
+                <button id="login-btn">ENTRAR</button>
+                <p>¿No tienes cuenta? <a href="#" id="show-register">Registrarse</a></p>
+            </div>
+
+            <div id="register-form" class="auth-form hidden">
+                <h2>REGISTRO</h2>
+                <input type="text" id="register-username" placeholder="Usuario" maxlength="20">
+                <input type="password" id="register-password" placeholder="Contraseña">
+                <input type="password" id="register-confirm" placeholder="Confirmar Contraseña">
+                <button id="register-btn">REGISTRARSE</button>
+                <p>¿Ya tienes cuenta? <a href="#" id="show-login">Iniciar Sesión</a></p>
+            </div>
+
+            <div id="auth-message" class="message"></div>
+        </div>
+    </div>
+
+    <!-- Pantalla de Menú Principal -->
+    <div id="menu-screen" class="screen hidden">
+        <div class="menu-container">
+            <h1>STRIKE v5</h1>
+            <div class="user-info">
+                <p>Bienvenido, <span id="username-display"></span></p>
+            </div>
+            
+            <div class="menu-buttons">
+                <button id="play-btn" class="menu-btn">JUGAR</button>
+                <button id="detailed-stats-btn" class="menu-btn">ESTADÍSTICAS</button>
+                <button id="avatar-btn" class="menu-btn">AVATAR</button>
+                <button id="leaderboard-btn" class="menu-btn">RANKING</button>
+                <button id="logout-btn" class="menu-btn">SALIR</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Pantalla de Estadísticas Detalladas -->
+    <div id="detailed-stats-screen" class="screen hidden">
+        <div class="detailed-stats-container">
+            <h2>ESTADÍSTICAS</h2>
+            <div class="detailed-stats-content">
+                <!-- Sección de Combate -->
+                <div class="stats-section">
+                    <h3>⚔️ COMBATE</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span>Enemigos Eliminados:</span>
+                            <span id="detailed-enemies-killed">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Normales:</span>
+                            <span id="detailed-enemies-normal">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Rápidos:</span>
+                            <span id="detailed-enemies-fast">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Tanques:</span>
+                            <span id="detailed-enemies-tank">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Zigzag:</span>
+                            <span id="detailed-enemies-zigzag">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Tiradores:</span>
+                            <span id="detailed-enemies-shooter">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Bosses Derrotados:</span>
+                            <span id="detailed-bosses-defeated">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Precisión de Disparos:</span>
+                            <span id="detailed-accuracy">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Combo Máximo:</span>
+                            <span id="detailed-max-combo">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de Supervivencia -->
+                <div class="stats-section">
+                    <h3>🛡️ SUPERVIVENCIA</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span>Tiempo Total Jugado:</span>
+                            <span id="detailed-playtime">0s</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Mejor Tiempo:</span>
+                            <span id="detailed-best-survival">0s</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Distancia Recorrida:</span>
+                            <span id="detailed-distance">0 píxeles</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Daño Recibido:</span>
+                            <span id="detailed-damage-taken">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Vidas Perdidas:</span>
+                            <span id="detailed-lives-lost">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Nivel Máximo:</span>
+                            <span id="detailed-max-level">1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de Power-ups -->
+                <div class="stats-section">
+                    <h3>⚡ POWER-UPS</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span>Total Recogidos:</span>
+                            <span id="detailed-powerups-total">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Rapid Fire:</span>
+                            <span id="detailed-powerups-rapid">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Shield:</span>
+                            <span id="detailed-powerups-shield">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Double Shot:</span>
+                            <span id="detailed-powerups-double">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Speed Boost:</span>
+                            <span id="detailed-powerups-speed">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Health:</span>
+                            <span id="detailed-powerups-health">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>→ Magnet:</span>
+                            <span id="detailed-powerups-magnet">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de Progreso -->
+                <div class="stats-section">
+                    <h3>📊 PROGRESO</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span>Partidas Jugadas:</span>
+                            <span id="detailed-games-played">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Partidas Completadas:</span>
+                            <span id="detailed-games-completed">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Puntuación Total:</span>
+                            <span id="detailed-total-score">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Mejor Puntuación:</span>
+                            <span id="detailed-best-score">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="back-from-detailed-stats" class="menu-btn">VOLVER</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de Avatares -->
+    <div id="avatar-screen" class="screen hidden">
+        <div class="avatar-container">
+            <h2>SELECCIONAR AVATAR</h2>
+            <div class="avatar-info">
+                <p>Puntuación Total: <span id="user-total-score">0</span></p>
+            </div>
+            
+            <div class="avatar-grid">
+                <div class="avatar-option" data-avatar="1">
+                    <div class="avatar-preview" id="avatar-1">
+                        <div class="avatar-icon default-avatar">👤</div>
+                    </div>
+                    <div class="avatar-name">Recluta</div>
+                    <div class="avatar-requirement">Por defecto</div>
+                    <button class="avatar-select-btn" data-avatar="1">SELECCIONAR</button>
+                </div>
+                
+                <div class="avatar-option" data-avatar="2">
+                    <div class="avatar-preview" id="avatar-2">
+                        <div class="avatar-icon elite-avatar">⚔️</div>
+                    </div>
+                    <div class="avatar-name">Soldado</div>
+                    <div class="avatar-requirement">3,000 puntos</div>
+                    <button class="avatar-select-btn" data-avatar="2" disabled>🔒 BLOQUEADO</button>
+                </div>
+                
+                <div class="avatar-option" data-avatar="3">
+                    <div class="avatar-preview" id="avatar-3">
+                        <div class="avatar-icon commander-avatar">👑</div>
+                    </div>
+                    <div class="avatar-name">Comandante</div>
+                    <div class="avatar-requirement">6,000 puntos</div>
+                    <button class="avatar-select-btn" data-avatar="3" disabled>🔒 BLOQUEADO</button>
+                </div>
+            </div>
+            
+            <div class="current-avatar">
+                <p>Avatar Actual: <span id="current-avatar-name">Recluta</span></p>
+                <div class="current-avatar-preview" id="current-avatar-display">
+                    <div class="avatar-icon default-avatar">👤</div>
+                </div>
+            </div>
+            
+            <button id="back-from-avatar" class="menu-btn">VOLVER</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de Ranking -->
+    <div id="leaderboard-screen" class="screen hidden">
+        <div class="leaderboard-container">
+            <h2>RANKING</h2>
+            <div id="leaderboard-list" class="leaderboard-list">
+                <!-- Se llena dinámicamente -->
+            </div>
+            <button id="back-from-leaderboard" class="menu-btn">VOLVER</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de Juego -->
+    <div id="game-screen" class="screen hidden">
+        <div class="game-container">
+            <div class="game-ui">
+                <div class="score-display">
+                    <span>PUNTUACIÓN: <span id="current-score">0</span></span>
+                    <span style="margin-left: 30px;">VIDAS: <span id="current-lives">3</span></span>
+                </div>
+                <div class="controls-info">
+                    <span>WASD: Movimiento | Mouse: Apuntar | Click Izquierdo: Disparo Automático | Click Derecho: Dash (Inmunidad 1.5s)</span>
+                </div>
+            </div>
+            <canvas id="game-canvas" width="800" height="600"></canvas>
+            <button id="pause-btn" class="pause-btn">PAUSA</button>
+        </div>
+    </div>
+
+    <!-- Pantalla de Game Over -->
+    <div id="gameover-screen" class="screen hidden">
+        <div class="gameover-container">
+            <h2>GAME OVER</h2>
+            <div class="final-score">
+                <p>Puntuación Final: <span id="final-score">0</span></p>
+            </div>
+            <div class="gameover-buttons">
+                <button id="play-again-btn" class="menu-btn">JUGAR DE NUEVO</button>
+                <button id="back-to-menu-btn" class="menu-btn">MENÚ PRINCIPAL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de Pausa -->
+    <div id="pause-screen" class="screen hidden">
+        <div class="pause-container">
+            <h2>PAUSA</h2>
+            <div class="pause-buttons">
+                <button id="resume-btn" class="menu-btn">CONTINUAR</button>
+                <button id="quit-game-btn" class="menu-btn">SALIR AL MENÚ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="game.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

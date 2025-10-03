@@ -1,0 +1,36 @@
+# GitHub Pages Configuration for STRIKE v5
+title: STRIKE v5
+description: Juego de disparos 2D minimalista
+baseurl: "/SHOOTER-G"
+url: "https://lxxszz.github.io"
+
+# Jekyll settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Exclude files from processing
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - server.js
+  - config.js
+  - config.env.example
+  - .env
+  - .gitignore
+  - .eslintrc.js
+  - .prettierrc
+  - tests/
+  - logs/
+  - utils/
+  - game.db
+  - README.md
+
+# Include only necessary files
+include:
+  - index.html
+  - styles.css
+  - app.js
+  - game.js
+  - auth.js
